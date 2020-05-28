@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div v-for="(ticket, index) in tickets" :key="index" class="ticket">
-      {{ ticket.number_tikets }}
-    </div>
+    <contant-pagination :tickets="tickets" />
     <el-pagination
       background=""
       layout="prev, pager, next"
@@ -15,9 +13,10 @@
 </template>
 
 <script>
+import contantPagination from '@/components/contant.paginatio.vue'
 import methodsMixins from '@/components/mixins/pagination.mixin.js'
 export default {
-  components: {},
+  components: { contantPagination },
   mixins: [methodsMixins],
   async asyncData({ query, params, store }) {
     const paramsPage = {
