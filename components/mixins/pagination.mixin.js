@@ -3,18 +3,18 @@ import _ from 'lodash'
 export default {
   data() {
     return {
-      page: 1,
-      pageSize: 5,
-      pageCount: 0,
-      allItems: [],
-      items: []
+      page: +this.$route.query.page || 1
     }
   },
   methods: {
-    setupPagination(allItems) {
-      this.allItems = _.chunk(allItems, this.pageSize)
-      this.pageCount = _.size(this.allItems)
-      this.items = this.allItems[this.page - 1] || this.allItems[0]
+    async changeHendler(page) {
+      const paramsPage = {
+        page: this.page || 1,
+        id: this.$route.params.id
+      }
+      const load = await this.$store.dispatch('tickets', paramsPage)
+      this.tickets = load.tickets
+      this.$router.push(`${this.$route.path}?page=${page}`)
     }
   }
 }

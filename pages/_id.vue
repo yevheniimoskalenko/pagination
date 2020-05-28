@@ -15,8 +15,10 @@
 </template>
 
 <script>
+import moduleName from '@/components/mixins/pagination.mixin.js'
 export default {
   components: {},
+  mixins: [moduleName],
   async asyncData({ query, params, store }) {
     const paramsPage = {
       page: query.page || 1,
@@ -24,22 +26,6 @@ export default {
     }
     const tickets = await store.dispatch('tickets', paramsPage)
     return { tickets: tickets.tickets, total: tickets.pages }
-  },
-  data() {
-    return {
-      page: +this.$route.query.page || 1
-    }
-  },
-  methods: {
-    async changeHendler(page) {
-      const paramsPage = {
-        page: this.page || 1,
-        id: this.$route.params.id
-      }
-      const load = await this.$store.dispatch('tickets', paramsPage)
-      this.tickets = load.tickets
-      this.$router.push(`${this.$route.path}?page=${page}`)
-    }
   }
 }
 </script>
