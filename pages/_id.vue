@@ -14,10 +14,10 @@
 
 <script>
 import contantPagination from '@/components/contant.paginatio.vue'
-import methodsMixins from '@/components/mixins/pagination.mixin.js'
+import methodsMixinsPagination from '@/components/mixins/pagination.mixin.js'
 export default {
   components: { contantPagination },
-  mixins: [methodsMixins],
+  mixins: [methodsMixinsPagination],
   async asyncData({ query, params, store }) {
     const paramsPage = {
       page: query.page || 1,
