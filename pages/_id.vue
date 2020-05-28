@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import moduleName from '@/components/mixins/pagination.mixin.js'
+import methodsMixins from '@/components/mixins/pagination.mixin.js'
 export default {
   components: {},
-  mixins: [moduleName],
+  mixins: [methodsMixins],
   async asyncData({ query, params, store }) {
     const paramsPage = {
       page: query.page || 1,
