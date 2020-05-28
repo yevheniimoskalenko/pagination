@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(ticket, index) in tickets" :key="index" class="ticket">
-      {{ ticket }}
+      {{ ticket.number_tikets }}
     </div>
     <el-pagination
       background=""
@@ -32,14 +32,13 @@ export default {
   },
   methods: {
     async changeHendler(page) {
-      this.$router.push(`${this.$route.path}?page=${page}`)
       const paramsPage = {
-        page: this.$route.query.page || 1,
+        page: this.page || 1,
         id: this.$route.params.id
       }
-
       const load = await this.$store.dispatch('tickets', paramsPage)
       this.tickets = load.tickets
+      this.$router.push(`${this.$route.path}?page=${page}`)
     }
   }
 }
