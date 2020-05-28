@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const pagination = require('./routers/pagination.routes')
 const app = express()
 
 mongoose
@@ -16,5 +17,6 @@ mongoose
   })
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use('/api/', pagination)
 
 module.exports = app
